@@ -1,6 +1,13 @@
 import { MeshReflectorMaterial} from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three";
 
 export function Ground() {
+    const [roughness, normal] = useLoader(TextureLoader, [
+        process.env.PUBLIC_URL + "/textures/terrain-roughness.jpg",
+        process.env.PUBLIC_URL + "/textures/terrain-normal.jpg",
+    ]);
+
     return (
         <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
             <planeGeometry args={[30, 30]} />
